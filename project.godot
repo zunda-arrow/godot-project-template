@@ -40,6 +40,7 @@ statistic=""
 [gui]
 
 timers/tooltip_delay_sec=0.0
+theme/custom="uid://bp35ok3gel4nx"
 
 [input]
 
