@@ -8,4 +8,3 @@ func get_scene() -> PackedScene:
 # This function will be run after your scene's _on_ready
 func setup(_scene: Node):
 	print("This is the setup function, put your setup code here.")
-

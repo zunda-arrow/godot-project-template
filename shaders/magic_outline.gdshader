@@ -3,7 +3,6 @@ shader_type canvas_item;
 uniform vec4 border_color: source_color;
 uniform float radius = 30;
 uniform int samples = 15;
-uniform float brightness = 0;
 
 float draw_outline(float offset, vec2 uv, sampler2D tex, vec2 texture_pixel_size) {
 	float r = radius;
