@@ -3,7 +3,10 @@ extends CenterContainer
 @onready var menu = $MainMenu
 @onready var options = $Options
 
+@onready var title = $MainMenu/HBoxContainer/Label
+
 func _ready() -> void:
+	title.text = ProjectSettings.get_setting("application/config/name")
 	menu.show()
 	options.hide()
 
