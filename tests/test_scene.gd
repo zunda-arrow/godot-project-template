@@ -10,6 +10,8 @@ extends SceneTree
 func get_scene() -> PackedScene:
 	return null
 
+# This method can be overridden to do whatever you need.
+# It will be run AFTER the scene's _on_ready function.
 func setup(scene: Node):
 	print("Override this method to setup your test!")
 
