@@ -2,9 +2,9 @@ class_name TestScene
 
 extends SceneTree
 
-# This is a class that lets up test a setup a scene how we please
-# and test it from the command line.
-# Example: godot -s tests/jakes_test.gd
+# This is a class that lets us test a setup a scene how we
+# please, and test it from the command line.
+# Example: godot -s tests/start_game.gd
 
 # Overide 
 func get_scene() -> PackedScene:
