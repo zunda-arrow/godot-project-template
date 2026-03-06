@@ -5,5 +5,7 @@ extends TestScene
 func get_scene() -> PackedScene:
 	return load("res://game/game.tscn")
 
-func setup(scene: Node):
-	print("There should be a little godot guy in the corner")
+# This function will be run after your scene's _on_ready
+func setup(_scene: Node):
+	print("This is the setup function, put your setup code here.")
+
