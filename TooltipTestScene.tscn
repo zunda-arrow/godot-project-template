@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bgkf2obq38va"]
+
+[ext_resource type="Texture2D" uid="uid://c8o38o30vq1wj" path="res://icon.svg" id="1_25omv"]
+[ext_resource type="Script" uid="uid://img3exe4h4pv" path="res://menu/config_manager.gd" id="1_u66mc"]
+[ext_resource type="PackedScene" uid="uid://cbc8mrd055rnk" path="res://include/tooltip/Tooltip.tscn" id="1_utcff"]
+[ext_resource type="Script" uid="uid://cdvog62ue7kgv" path="res://include/tooltip/tooltip_hint_resource.gd" id="3_jav6r"]
+[ext_resource type="Script" uid="uid://brb3bsbnelo5w" path="res://include/tooltip/tooltip_resource.gd" id="4_25omv"]
+
+[sub_resource type="Resource" id="Resource_jav6r"]
+script = ExtResource("3_jav6r")
+label = "Example"
+description = "Example hint"
+metadata/_custom_type_script = "uid://cdvog62ue7kgv"
+
+[sub_resource type="Resource" id="Resource_25omv"]
+script = ExtResource("3_jav6r")
+metadata/_custom_type_script = "uid://cdvog62ue7kgv"
+
+[sub_resource type="Resource" id="Resource_u66mc"]
+script = ExtResource("4_25omv")
+label = "Tooltip"
+description = "Example"
+hints = Array[ExtResource("3_jav6r")]([SubResource("Resource_jav6r"), SubResource("Resource_25omv")])
+metadata/_custom_type_script = "uid://brb3bsbnelo5w"
+
+[node name="Node" type="Node2D" unique_id=912799718]
+script = ExtResource("1_u66mc")
+
+[node name="TooltipTestScene" type="Sprite2D" parent="." unique_id=618077632]
+position = Vector2(1026, 860)
+texture = ExtResource("1_25omv")
+
+[node name="Tooltip" parent="." unique_id=1395806962 node_paths=PackedStringArray("show_when_hovering_over") instance=ExtResource("1_utcff")]
+show_when_hovering_over = NodePath("../TooltipTestScene")
+resource = SubResource("Resource_u66mc")

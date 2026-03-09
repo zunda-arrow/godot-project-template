@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://cbc8mrd055rnk"]
+
+[ext_resource type="Script" uid="uid://u5ycrmg75s6y" path="res://include/tooltip/tooltip.gd" id="2_lvb04"]
+[ext_resource type="PackedScene" uid="uid://htglbgt13uu7" path="res://include/comment/Comment.tscn" id="3_3sruy"]
+[ext_resource type="Texture2D" uid="uid://c8o38o30vq1wj" path="res://icon.svg" id="4_6h5qk"]
+
+[sub_resource type="Theme" id="Theme_ar4lr"]
+
+[node name="Tooltip" type="Control" unique_id=604278011]
+layout_mode = 3
+anchors_preset = 0
+theme = SubResource("Theme_ar4lr")
+script = ExtResource("2_lvb04")
+
+[node name="Margins" type="MarginContainer" parent="." unique_id=774133519]
+editor_description = "This node can be used to add margins to the tooltip."
+layout_mode = 0
+offset_left = 30.0
+offset_top = -172.0
+offset_right = 450.0
+offset_bottom = -30.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Margins" unique_id=669569958]
+z_index = 1000
+z_as_relative = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margins/PanelContainer" unique_id=1177120531]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margins/PanelContainer/VBoxContainer" unique_id=748259910]
+z_index = 2
+layout_mode = 2
+
+[node name="icon" type="TextureRect" parent="Margins/PanelContainer/VBoxContainer/HBoxContainer" unique_id=134908033]
+layout_mode = 2
+texture = ExtResource("4_6h5qk")
+expand_mode = 2
+
+[node name="name" type="Label" parent="Margins/PanelContainer/VBoxContainer/HBoxContainer" unique_id=371740107]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 30
+text = "Tooltip"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margins/PanelContainer/VBoxContainer" unique_id=666162563]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="description" type="Label" parent="Margins/PanelContainer/VBoxContainer/VBoxContainer" unique_id=977167599]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Short description that should wrap if it becomes too long."
+autowrap_mode = 2
+
+[node name="Comment" parent="." unique_id=2120769087 instance=ExtResource("3_3sruy")]
+layout_mode = 0
+offset_left = 260.0
+offset_top = -258.0
+offset_right = 651.0
+offset_bottom = -139.0
+text = "This is offscreen because otherwise it randomy shows up on screen in the wrong plaec when I try to show the tooltip."
+
+[connection signal="mouse_exited" from="Margins/PanelContainer" to="Margins/PanelContainer" method="_on_mouse_exited"]
+[connection signal="mouse_exited" from="Margins/PanelContainer/VBoxContainer/HBoxContainer/name" to="Margins/PanelContainer/VBoxContainer/HBoxContainer/name" method="_on_mouse_exited"]
