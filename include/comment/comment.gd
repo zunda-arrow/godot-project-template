@@ -4,6 +4,7 @@ extends Label
 func _ready():
 	if not Engine.is_editor_hint():
 		queue_free()
+		return
 
 	var scene_root = EditorInterface.get_edited_scene_root()
 	
