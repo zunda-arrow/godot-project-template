@@ -43,13 +43,5 @@ theme_override_font_sizes/font_size = 24
 text = "Short description that should wrap if it becomes too long. Makes this so long its 3 lines."
 autowrap_mode = 2
 
-[node name="TooltipStyle" type="MarginContainer" parent="." unique_id=1640107277]
-editor_description = "This node can be used to add margins to the tooltip."
-clip_contents = true
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-script = ExtResource("1_f4dat")
-
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="mouse_exited" from="VBoxContainer/HBoxContainer/name" to="VBoxContainer/HBoxContainer/name" method="_on_mouse_exited"]

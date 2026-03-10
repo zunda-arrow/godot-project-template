@@ -3,16 +3,20 @@
 [ext_resource type="Texture2D" uid="uid://c8o38o30vq1wj" path="res://icon.svg" id="1_25omv"]
 [ext_resource type="Script" uid="uid://img3exe4h4pv" path="res://menu/config_manager.gd" id="1_u66mc"]
 [ext_resource type="PackedScene" uid="uid://ba44874brqvqc" path="res://include/tooltip/ExampleTooltip.tscn" id="2_jav6r"]
+[ext_resource type="Script" uid="uid://bq5qpqs8ffj0o" path="res://pet.gd" id="3_25omv"]
 [ext_resource type="PackedScene" uid="uid://cbc8mrd055rnk" path="res://include/tooltip/TooltipController.tscn" id="4_25omv"]
+[ext_resource type="Resource" uid="uid://bjq30ubxeck6s" path="res://resources/pets/splochy.tres" id="4_u66mc"]
 
 [node name="Node" type="Node2D" unique_id=912799718]
 script = ExtResource("1_u66mc")
 
-[node name="TooltipTestScene" type="Sprite2D" parent="." unique_id=618077632]
+[node name="Pet" type="Sprite2D" parent="." unique_id=618077632]
 position = Vector2(620, 502)
 texture = ExtResource("1_25omv")
+script = ExtResource("3_25omv")
+pet_resource = ExtResource("4_u66mc")
 
-[node name="TooltipPlacer" parent="TooltipTestScene" unique_id=604278011 node_paths=PackedStringArray("show_when_hovering_over", "tooltip") instance=ExtResource("4_25omv")]
+[node name="TooltipPlacer" parent="Pet" unique_id=604278011 node_paths=PackedStringArray("show_when_hovering_over", "tooltip") instance=ExtResource("4_25omv")]
 offset_left = -833.0
 offset_top = -660.0
 offset_right = -833.0
@@ -21,7 +25,7 @@ show_when_hovering_over = NodePath("..")
 direction = 1
 tooltip = NodePath("../TooltipBox")
 
-[node name="TooltipBox" parent="TooltipTestScene" unique_id=1640107277 instance=ExtResource("2_jav6r")]
+[node name="TooltipBox" parent="Pet" unique_id=1640107277 instance=ExtResource("2_jav6r")]
 visible = false
 offset_left = 64.0
 offset_top = -77.0
