@@ -57,6 +57,8 @@ func position_main_tooltip():
 
 	if tooltip == null:
 		return
+	
+	tooltip.size.y = 0
 
 	tooltip.global_position = position_single_tooltip(get_tooltip_size(), parent_rect, direction_priority_list)
 
@@ -93,8 +95,6 @@ func try_place_left(tooltip_size: Vector2, around: Rect2):
 func try_place_right(tooltip_size: Vector2, around: Rect2):
 	var top_left_x = around.position.x + around.size.x
 	var top_left_y = around.position.y + around.size.y / 2 - tooltip_size.y / 2
-
-	print(tooltip_size)
 
 	if top_left_x + tooltip_size.x > get_viewport_size().size.x:
 		return null
