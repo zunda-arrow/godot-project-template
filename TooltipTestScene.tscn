@@ -9,7 +9,7 @@
 script = ExtResource("1_u66mc")
 
 [node name="TooltipTestScene" type="Sprite2D" parent="." unique_id=618077632]
-position = Vector2(833, 660)
+position = Vector2(620, 502)
 texture = ExtResource("1_25omv")
 
 [node name="TooltipPlacer" parent="TooltipTestScene" unique_id=604278011 node_paths=PackedStringArray("show_when_hovering_over", "tooltip") instance=ExtResource("4_25omv")]
