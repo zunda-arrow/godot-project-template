@@ -8,9 +8,9 @@
 script = ExtResource("1_u66mc")
 
 [node name="TooltipTestScene" type="Sprite2D" parent="." unique_id=618077632]
-position = Vector2(597, 588)
+position = Vector2(507, 467)
 texture = ExtResource("1_25omv")
 
 [node name="Tooltip" parent="." unique_id=604278011 node_paths=PackedStringArray("show_when_hovering_over") instance=ExtResource("1_utcff")]
 show_when_hovering_over = NodePath("../TooltipTestScene")
-direction = 3
+direction = 2

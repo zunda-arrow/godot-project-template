@@ -102,8 +102,8 @@ func try_place_left(tooltip: Vector2, around: Rect2):
 		return null
 	if top_left_y < 0:
 		top_left_y = 0
-	if top_left_y + tooltip.y >= get_viewport_rect().size.y:
-		top_left_y = get_viewport_rect().size.y - tooltip.y
+	if top_left_y + tooltip.y >= get_viewport_size().size.y:
+		top_left_y = get_viewport_size().size.y - tooltip.y
 
 	return Vector2(top_left_x, top_left_y)
 
@@ -111,12 +111,12 @@ func try_place_right(tooltip: Vector2, around: Rect2):
 	var top_left_x = around.position.x + around.size.x
 	var top_left_y = around.position.y + around.size.y / 2 - tooltip.y / 2
 
-	if top_left_x + tooltip.x > get_viewport_rect().size.x:
+	if top_left_x + tooltip.x > get_viewport_size().size.x:
 		return null
 	if top_left_y < 0:
 		top_left_y = 0
-	if top_left_y + tooltip.y >= get_viewport_rect().size.y:
-		top_left_y = get_viewport_rect().size.y - tooltip.y
+	if top_left_y + tooltip.y >= get_viewport_size().size.y:
+		top_left_y = get_viewport_size().size.y - tooltip.y
 
 	return Vector2(top_left_x, top_left_y)
 
@@ -128,8 +128,8 @@ func try_place_up(tooltip: Vector2, around: Rect2):
 		return null
 	if top_left_x < 0:
 		top_left_x = 0
-	if top_left_x + tooltip.x >= get_viewport_rect().size.x:
-		top_left_x = get_viewport_rect().size.x - tooltip.x
+	if top_left_x + tooltip.x >= get_viewport_size().size.x:
+		top_left_x = get_viewport_size().size.x - tooltip.x
 
 	return Vector2(top_left_x, top_left_y)
 
@@ -137,14 +137,19 @@ func try_place_down(tooltip: Vector2, around: Rect2):
 	var top_left_x = around.position.x + around.size.x / 2 - tooltip.x / 2
 	var top_left_y = around.position.y + around.size.y 
 
-	if top_left_y + tooltip.y > get_viewport_rect().size.y:
+	if top_left_y + tooltip.y > get_viewport_size().size.y:
 		return null
 	if top_left_x < 0:
 		top_left_x = 0
-	if top_left_x + tooltip.x >= get_viewport_rect().size.x:
-		top_left_x = get_viewport_rect().size.x - tooltip.x
+	if top_left_x + tooltip.x >= get_viewport_size().size.x:
+		top_left_x = get_viewport_size().size.x - tooltip.x
 
 	return Vector2(top_left_x, top_left_y)
+
+func get_viewport_size():
+	if Engine.is_editor_hint():
+		return Rect2(Vector2(0, 0), Vector2(1920, 1080))
+	return get_viewport().get_visible_rect()
 
 func get_tooltip_size():
 	if tooltip_panel:
