@@ -147,6 +147,8 @@ func try_place_down(tooltip: Vector2, around: Rect2):
 	return Vector2(top_left_x, top_left_y)
 
 func get_viewport_size():
+	# When editing, the viewport size is the size of view that we edit the level in.
+	# I use 1920x1080 instead because we hardcode that for our project and it looks correct.
 	if Engine.is_editor_hint():
 		return Rect2(Vector2(0, 0), Vector2(1920, 1080))
 	return get_viewport().get_visible_rect()
