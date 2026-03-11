@@ -13,56 +13,41 @@ enum Direction {
 	DOWN,
 }
 
-@export var show_when_hovering_over: Sprite2D = null
-@export var direction: Direction = Direction.LEFT
-
+@export var show_when_hovering: Node
+@export var around: Node = null
+@export var direction_0: Direction = Direction.LEFT
+@export var direction_1: Direction = Direction.LEFT
+@export var direction_2: Direction = Direction.LEFT
+@export var direction_3: Direction = Direction.LEFT
 @export var tooltip: Control
-
+@export var avoid_overlap: Array[Node] = []
 
 var displayed_hints: Array[Node] = []
 
 func _process(_delta: float):
-	if show_when_hovering_over == null:
+	if around == null:
 		return
 
 	# We set the position in process so moving objects keep
 	# the correct tooltip positions
-	var parent_position: Vector2 = show_when_hovering_over.position
-	var parent_size: Rect2 = show_when_hovering_over.get_rect()
-	var parent_top_left = parent_position + parent_size.position
-	var parent_bottom_right = parent_position + parent_size.end
+	var parent_position: Vector2 = around.global_position
 
 	position_main_tooltip()
 
-	var mouse_pos = get_viewport().get_mouse_position()
-	if mouse_pos.x > parent_top_left.x and mouse_pos.y > parent_top_left.y and mouse_pos.x < parent_bottom_right.x and mouse_pos.y < parent_bottom_right.y:
-		tooltip.show()
-	else:
-		tooltip.hide()
 
 func position_main_tooltip():
-	var parent_position: Vector2 = show_when_hovering_over.position
-	var parent_size: Rect2 = show_when_hovering_over.get_rect()
-	var parent_rect = Rect2(parent_position + parent_size.position, parent_size.size)
+	var around_rect = get_node_global_bounding_box(around)
 
-	var direction_priority_list: Array[Direction] = []
-	if direction == Direction.LEFT:
-		direction_priority_list = [Direction.LEFT, Direction.RIGHT]
-	if direction == Direction.RIGHT:
-		direction_priority_list = [Direction.RIGHT, Direction.LEFT]
-	if direction == Direction.UP:
-		direction_priority_list = [Direction.UP, Direction.DOWN]
-	if direction == Direction.DOWN:
-		direction_priority_list = [Direction.DOWN, Direction.UP]
+	var direction_priority_list: Array[Direction] = [direction_0, direction_1, direction_2, direction_3]
 
 	if tooltip == null:
 		return
 	
 	tooltip.size.y = 0
 
-	tooltip.global_position = position_single_tooltip(get_tooltip_size(), parent_rect, direction_priority_list)
+	tooltip.global_position = position_single_tooltip(get_tooltip_size(), around_rect, direction_priority_list)
 
-func position_single_tooltip(tooltip_size, around, direction_priority: Array[Direction]):
+func position_single_tooltip(tooltip_size, around, direction_priority: Array[Direction]) -> Vector2:
 	for d in direction_priority:
 		var location = null
 		if d == Direction.LEFT:
@@ -73,9 +58,17 @@ func position_single_tooltip(tooltip_size, around, direction_priority: Array[Dir
 			location = try_place_up(tooltip_size, around)
 		if d == Direction.DOWN:
 			location = try_place_down(tooltip_size, around)
+
+		if location != null:
+			var tooltip_global_bounding_box = Rect2(location, tooltip_size)
+			for do_not_overlap in avoid_overlap:
+				if get_node_global_bounding_box(do_not_overlap).intersects(tooltip_global_bounding_box):
+					location = null
+					break
+
 		if location != null:
 			return location
-
+			
 	return Vector2(0, 0)
 
 
@@ -130,6 +123,22 @@ func try_place_down(tooltip_size: Vector2, around: Rect2):
 		top_left_x = get_viewport_size().size.x - tooltip_size.x
 
 	return Vector2(top_left_x, top_left_y)
+
+func get_node_global_bounding_box(node: Node):
+	var node_position: Vector2 = node.position
+
+	var node_size: Rect2
+	var node_top_left
+
+	if node is Node2D:
+		node_size = node.get_rect()
+		node_top_left = node_position + node_size.position
+	if node is Control:
+		node_size = node.get_global_rect()
+		node_top_left = node_size.position
+
+	return Rect2(node_top_left, node_size.size)
+
 
 func get_viewport_size():
 	# When editing, the viewport size is the size of view that we edit the level in.

@@ -1,8 +1,9 @@
+@tool
 extends Control
 
 @export var tooltip_name: String = "Name"
-@export var tooltip_description: String = "Example tooltip description"
+@export_multiline var tooltip_description: String = "Example tooltip description"
 
-func _process(delta) -> void:
-	$PanelContainer/VBoxContainer/HBoxContainer/name.text = tooltip_name
-	$PanelContainer/VBoxContainer/VBoxContainer/description.text = tooltip_description
+func _process(_delta) -> void:
+	%TooltipName.text = tooltip_name
+	%TooltipDescription.text = tooltip_description
