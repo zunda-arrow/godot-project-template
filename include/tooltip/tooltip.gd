@@ -57,17 +57,17 @@ func position_main_tooltip():
 
 	tooltip.global_position = position_single_tooltip(get_tooltip_size(), around_rect, direction_priority_list)
 
-func position_single_tooltip(tooltip_size, around, direction_priority: Array[Direction]) -> Vector2:
+func position_single_tooltip(tooltip_size, around_node, direction_priority: Array[Direction]) -> Vector2:
 	for d in direction_priority:
 		var location = null
 		if d == Direction.LEFT:
-			location = try_place_left(tooltip_size, around)
+			location = try_place_left(tooltip_size, around_node)
 		if d == Direction.RIGHT:
-			location = try_place_right(tooltip_size, around)
+			location = try_place_right(tooltip_size, around_node)
 		if d == Direction.UP:
-			location = try_place_up(tooltip_size, around)
+			location = try_place_up(tooltip_size, around_node)
 		if d == Direction.DOWN:
-			location = try_place_down(tooltip_size, around)
+			location = try_place_down(tooltip_size, around_node)
 
 		if location != null:
 			var tooltip_global_bounding_box = Rect2(location, tooltip_size)
@@ -135,6 +135,8 @@ func try_place_down(tooltip_size: Vector2, around: Rect2):
 	return Vector2(top_left_x, top_left_y)
 
 func get_node_global_bounding_box(node: Node):
+	if node == null:
+		return Rect2()
 	var node_position: Vector2 = node.position
 
 	var node_size: Rect2

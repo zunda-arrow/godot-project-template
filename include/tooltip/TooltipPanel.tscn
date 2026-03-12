@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ba44874brqvqc"]
 
 [ext_resource type="Texture2D" uid="uid://c8o38o30vq1wj" path="res://icon.svg" id="1_bovhr"]
-[ext_resource type="Script" uid="uid://bmv0cwqk02ham" path="res://include/tooltip/example_tooltip.gd" id="1_f4dat"]
+[ext_resource type="Script" uid="uid://bmv0cwqk02ham" path="res://include/tooltip/tooltip_panel.gd" id="1_f4dat"]
 
 [node name="TooltipPanel" type="MarginContainer" unique_id=1640107277]
 editor_description = "This node can be used to add margins to the tooltip."
