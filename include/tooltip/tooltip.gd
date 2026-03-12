@@ -24,15 +24,27 @@ enum Direction {
 
 var displayed_hints: Array[Node] = []
 
+func _ready() -> void:
+	tooltip.size.y = 0
+
 func _process(_delta: float):
+	# If I don't do this, the tooltip becomes really tall
+	# I do not know why
+	tooltip.size.y = 0
+
 	if around == null:
 		return
-
-	# We set the position in process so moving objects keep
-	# the correct tooltip positions
-	var parent_position: Vector2 = around.global_position
+	if show_when_hovering == null:
+		show()
+		return
 
 	position_main_tooltip()
+
+	if show_when_hovering != null:
+		if get_node_global_bounding_box(show_when_hovering).has_point(get_global_mouse_position()):
+			show()
+		else:
+			hide()
 
 
 func position_main_tooltip():
@@ -42,8 +54,6 @@ func position_main_tooltip():
 
 	if tooltip == null:
 		return
-	
-	tooltip.size.y = 0
 
 	tooltip.global_position = position_single_tooltip(get_tooltip_size(), around_rect, direction_priority_list)
 

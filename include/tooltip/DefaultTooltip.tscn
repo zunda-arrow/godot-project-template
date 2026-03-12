@@ -1,56 +1,44 @@
 [gd_scene format=3 uid="uid://b3fufgvbbm832"]
 
+[ext_resource type="Script" uid="uid://csds50qb4yrch" path="res://include/tooltip/default_tooltip.gd" id="1_222uh"]
 [ext_resource type="PackedScene" uid="uid://cbc8mrd055rnk" path="res://include/tooltip/TooltipController.tscn" id="1_vjn1j"]
 [ext_resource type="PackedScene" uid="uid://ba44874brqvqc" path="res://include/tooltip/TooltipPanel.tscn" id="2_vufjc"]
-[ext_resource type="Texture2D" uid="uid://c8o38o30vq1wj" path="res://icon.svg" id="3_vufjc"]
 [ext_resource type="PackedScene" uid="uid://bwjnmo5w7i7v1" path="res://include/tooltip/TooltipHintPanel.tscn" id="4_222uh"]
 
 [node name="DefaultTooltip" type="Control" unique_id=1094151248]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+script = ExtResource("1_222uh")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1832811741]
-position = Vector2(1238, 568)
-texture = ExtResource("3_vufjc")
-
-[node name="Tooltip" parent="." unique_id=604278011 node_paths=PackedStringArray("around", "tooltip") instance=ExtResource("1_vjn1j")]
+[node name="Tooltip" parent="." unique_id=604278011 node_paths=PackedStringArray("tooltip") instance=ExtResource("1_vjn1j")]
+unique_name_in_owner = true
 layout_mode = 0
-around = NodePath("../Sprite2D")
 direction_1 = 1
 direction_2 = 2
 direction_3 = 3
 tooltip = NodePath("MainTooltip")
 
 [node name="MainTooltip" parent="Tooltip" unique_id=1640107277 instance=ExtResource("2_vufjc")]
+unique_name_in_owner = true
 layout_mode = 0
-offset_left = 774.0
-offset_top = 528.0
-offset_right = 1174.0
-offset_bottom = 608.0
+offset_right = 400.0
+offset_bottom = 80.0
 
-[node name="Tooltip2" parent="." unique_id=2082494319 node_paths=PackedStringArray("show_when_hovering", "around", "tooltip", "avoid_overlap") instance=ExtResource("1_vjn1j")]
+[node name="Hints" parent="." unique_id=2082494319 node_paths=PackedStringArray("tooltip") instance=ExtResource("1_vjn1j")]
+unique_name_in_owner = true
 layout_mode = 0
-show_when_hovering = NodePath("../Sprite2D")
-around = NodePath("../Tooltip/MainTooltip")
 direction_1 = 1
 direction_2 = 3
 direction_3 = 2
 tooltip = NodePath("VBoxContainer")
-avoid_overlap = [NodePath("../Sprite2D")]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tooltip2" unique_id=1718395702]
+[node name="VBoxContainer" type="VBoxContainer" parent="Hints" unique_id=1718395702]
 layout_mode = 0
-offset_left = 574.0
-offset_top = 486.0
-offset_right = 774.0
-offset_bottom = 650.0
+offset_right = 200.0
+offset_bottom = 164.0
 
-[node name="TooltipPanel" parent="Tooltip2/VBoxContainer" unique_id=1861769510 instance=ExtResource("4_222uh")]
+[node name="TooltipPanel" parent="Hints/VBoxContainer" unique_id=1861769510 instance=ExtResource("4_222uh")]
 layout_mode = 2
 
-[node name="TooltipPanel2" parent="Tooltip2/VBoxContainer" unique_id=1493704871 instance=ExtResource("4_222uh")]
+[node name="TooltipPanel2" parent="Hints/VBoxContainer" unique_id=1493704871 instance=ExtResource("4_222uh")]
 layout_mode = 2
