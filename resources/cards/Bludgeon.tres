@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CardResource" format=3 uid="uid://c3y8eq17l8ubi"]
+
+[ext_resource type="Script" uid="uid://dpeyj7o066yip" path="res://resources/cards/card_resource.gd" id="1_6kem1"]
+[ext_resource type="Script" uid="uid://dlk224tiqh3x4" path="res://resources/cards/card_effect_resource.gd" id="1_ctfie"]
+
+[sub_resource type="Resource" id="Resource_ejhw0"]
+script = ExtResource("1_ctfie")
+value = 32
+metadata/_custom_type_script = "uid://dlk224tiqh3x4"
+
+[resource]
+script = ExtResource("1_6kem1")
+title = "Bludgeon"
+description = "Deal 32 Damage"
+effects = Array[ExtResource("1_ctfie")]([SubResource("Resource_ejhw0")])
+metadata/_custom_type_script = "uid://dpeyj7o066yip"
