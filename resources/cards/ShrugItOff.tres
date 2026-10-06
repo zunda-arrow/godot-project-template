@@ -6,7 +6,6 @@
 [sub_resource type="Resource" id="Resource_ctfie"]
 script = ExtResource("1_ejhw0")
 effect_type = 1
-value = 8
 metadata/_custom_type_script = "uid://dlk224tiqh3x4"
 
 [sub_resource type="Resource" id="Resource_1h4ty"]
